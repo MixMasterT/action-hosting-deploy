@@ -80,6 +80,7 @@ async function execWithCredentials(
 
   try {
     await exec(
+      "firebase experiments:enable webframeworks && ",
       `npx firebase-tools@${firebaseToolsVersion}`,
       [
         ...args,
@@ -161,7 +162,7 @@ export async function deployProductionSite(
   const { projectId, target, firebaseToolsVersion } = productionDeployConfig;
 
   const deploymentText = await execWithCredentials(
-    ["firebase experiments:enable webframeworks && ","deploy", "--only", `hosting${target ? ":" + target : ""}`],
+    ["deploy", "--only", `hosting${target ? ":" + target : ""}`],
     projectId,
     gacFilename,
     { firebaseToolsVersion }
